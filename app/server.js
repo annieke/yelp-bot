@@ -59,6 +59,12 @@ controller.setupWebserver(process.env.PORT || 3001, (err, webserver) => {
 controller.hears(
   ['hello', 'hi', 'howdy'], ['direct_message', 'direct_mention', 'mention'],
   (bot, message) => {
+    bot.startConversation(message, (err, convo) => {
+      convo.addQuestion('Would you like food recommendations? (y/n)', (res, subconvo) => {
+        subconvo.say(`Cool, you said ${res.text}`);
+        subconvo.next();
+      }, {}, 'default');
+    });
     bot.api.users.info({ user: message.user }, (err, res) => {
       if (res) {
         bot.reply(message, `Hello, ${res.user.name}!`);
@@ -68,3 +74,7 @@ controller.hears(
     });
   },
 );
+
+// controller.on('user_typing', (bot, message) => {
+//   bot.reply(message, 'stop typing!');
+// });

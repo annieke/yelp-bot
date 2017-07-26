@@ -21,7 +21,8 @@
     "cors": "^2.8.3",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.6",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "yelp-fusion": "^1.0.3"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
